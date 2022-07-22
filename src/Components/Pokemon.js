@@ -8,26 +8,26 @@ export const Pokemon = ({ pokemon }) => {
   return (
     <>
       <div className="pokemon">
-        <h3>{!loading ? pokemonData.name.toUpperCase() : ""}</h3>
-        <h4> {!loading ? "N° " + pokemonData.id : ""}</h4>
+        <h3>{!loading && pokemonData ? pokemonData.name.toUpperCase() : null}</h3>
+        <h4> {!loading && pokemonData ? "N° " + pokemonData.id : ""}</h4>
       </div>
       <button onClick={() => setImgFront(!imgFront)}>
         {imgFront ? "↺" : "↻"}
       </button>
       <div className="pokemonImg">
-        {!loading && imgFront ? (
+        {!loading && imgFront && pokemonData ? (
           <img src={pokemonData.imgFront} alt="frontPokemon" />
         ) : (
           ""
         )}
-        {!loading && !imgFront ? (
+        {!loading && !imgFront && pokemonData ? (
           <img src={pokemonData.imgBack} alt="backPokemon" />
         ) : (
           ""
         )}
       </div>
       <div>
-        {!loading
+        {!loading && pokemonData 
           ? pokemonData.types.map((type) => {
               return (
                 <div className={type.type.name} key={type.slot}>
@@ -42,7 +42,7 @@ export const Pokemon = ({ pokemon }) => {
       <div className="divStat">
         <table className="statTable">
           <tbody>
-            {!loading
+            {!loading && pokemonData 
               ? pokemonData.stats.map((stat) => {
                   return (
                     <tr key={stat.stat.name}>
