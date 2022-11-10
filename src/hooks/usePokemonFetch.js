@@ -6,7 +6,7 @@ export const usePokemonFetch = (pokemon) => {
   const [loading, setLoading] = useState(true);
   useEffect(() => {
     setLoading(true);
-    getPokemon(pokemon)
+    getPokemon(pokemon.toLowerCase())
       .then((pok) => {
         setPokemonData(pok);
         setLoading(false);
