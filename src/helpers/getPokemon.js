@@ -13,6 +13,6 @@ export const getPokemon = async (pokemon) => {
     };
     return pokemonFind;
   } catch (error) {
-    return false;
+    throw error;
   }
 };

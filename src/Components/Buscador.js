@@ -9,14 +9,13 @@ export const Buscador = ({setPokemon}) => {
   const preventDefault = (e) => {
     e.preventDefault();
     setPokemon(busqueda)
-    setBusqueda('')
   };
 
   return (
     <div className="buscador">
       <form onSubmit={preventDefault}>
         <input type="text" value={busqueda} onChange={setInputBusqueda} />
-        <input type="submit" value="Buscar "/>
+        <button type="submit" className="btn-buscar">🔎</button>
       </form>
     </div>
   );

@@ -2,18 +2,20 @@ import { useState, useEffect } from "react";
 import { getPokemon } from "../helpers/getPokemon";
 
 export const usePokemonFetch = (pokemon) => {
-  const [state, setState] = useState({
-    pokemonData: {},
-    loading: true,  
-  });
+  const [pokemonData, setPokemonData] = useState({});
+  const [loading, setLoading] = useState(true);
   useEffect(() => {
-    getPokemon(pokemon).then((pok) => {
-      setState({
-        pokemonData: pok,
-        loading: false,
+    setLoading(true);
+    getPokemon(pokemon)
+      .then((pok) => {
+        setPokemonData(pok);
+        setLoading(false);
+      })
+      .catch((error) => {
+        setPokemonData(null);
+        setLoading(false);
       });
-    });
   }, [pokemon]);
 
-  return state;
+  return { pokemonData, loading };
 };
