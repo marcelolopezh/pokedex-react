@@ -9,7 +9,7 @@ export const Pokedex = ({ pokemon }) => {
   return (
     <>
       {loading ? (
-        <img src={pokeGif} width="100%" />
+        <img src={pokeGif} width="50%" />
       ) : (
         <PokeInfo pokemonData={pokemonData} />
       )}

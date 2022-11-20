@@ -1,13 +1,18 @@
-html, body {
-    height:100%;
-} 
+
+html,
+body {
+    height: 100vh;
+}
+
 
 body {
-    background-color: white;
-    background: url('./assets/img/background.png');
-    background-size: 100% 100%;
-    background-repeat: no-repeat;
-    background-position: left top;
+    background: url('./assets/img/background.png') top center  repeat-y;
+    overflow: scroll;
+}
+
+.mainContainer {
+    justify-content: center;
+    text-align: center;
 }
 
 .pokedex {
@@ -159,35 +164,49 @@ body {
     margin: 0.1rem;
 }
 
-.typePokemon{
+.typePokemon {
     font-family: 'Courier New', Courier, monospace;
     font-weight: bold;
     font-size: 0.7rem;
     letter-spacing: 0.1rem;
 }
 
-.statTable{
+.statTable {
     width: 100%;
-    margin-top:1rem;
+    margin-top: 1rem;
 }
-.statTable tr{
+
+.statTable tr {
     background-color: rgba(195, 221, 221, 0.16);
 }
-.statName{
+
+.statName {
     text-align: left;
     font-weight: bold;
     font-size: 1rem;
     font-family: 'Courier New', Courier, monospace;
 }
-.statValue{
+
+.statValue {
     font-size: 1rem;
     font-family: 'Courier New', Courier, monospace;
 }
 
-h3,h4{
-    font-family: 'Courier New', Courier, monospace;
+
+h1,
+h2,
+h3,
+h4 {
+    font-family: PokemonHollow;
 }
 
-.btn-buscar{
-    
+.btn-buscar {}
+
+.buscador {
+    margin-bottom: 1.5rem;
+}
+
+.boxScroll{
+    max-height: 100vh;
+    scroll-behavior: auto;
 }
