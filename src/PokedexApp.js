@@ -26,7 +26,7 @@ export const PokedexApp = () => {
           <Grid item xs={12} md={5}>
             <Card>
               <CardContent>
-                <PokemonList />
+                <PokemonList setPokemon={setPokemon} />
               </CardContent>
             </Card>{" "}
           </Grid>

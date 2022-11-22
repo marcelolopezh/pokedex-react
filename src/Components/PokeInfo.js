@@ -108,7 +108,6 @@ export const PokeInfo = ({ pokemonData }) => {
           <Grid
             md={7}
             xs={12}
-            direction="column"
             alignItems="center"
             justifyContent="center"
           >

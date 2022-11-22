@@ -6,7 +6,7 @@ import { PokemonCard } from "./PokemonCard";
 
 import Pagination from "@mui/material/Pagination";
 
-export const PokemonList = () => {
+export const PokemonList = ({ setPokemon }) => {
   const [loading, setLoading] = useState(true);
   const [pokemonList, setPokemonList] = useState();
   const [page, setPage] = useState(1);
@@ -50,7 +50,16 @@ export const PokemonList = () => {
               {pokemonList
                 ? pokemonList.results.map((pokemon) => (
                     <Grid item xs={6} md={4} key={pokemon.name}>
-                      <PokemonCard pokemon={pokemon} />
+                      <button
+                        style={{
+                          border: "none",
+                          background: "none",
+                          width: "100%",
+                        }}
+                        onClick={() => setPokemon(pokemon.name)}
+                      >
+                        <PokemonCard pokemon={pokemon} />
+                      </button>
                     </Grid>
                   ))
                 : ""}
