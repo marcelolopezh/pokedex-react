@@ -49,7 +49,7 @@ export const PokemonList = () => {
             <>
               {pokemonList
                 ? pokemonList.results.map((pokemon) => (
-                    <Grid item xs={6} md={4} key={pokemon.name}>
+                    <Grid item xs={5} offset={1} md={4} key={pokemon.name}>
                       <PokemonCard pokemon={pokemon} />
                     </Grid>
                   ))
@@ -64,7 +64,7 @@ export const PokemonList = () => {
                   justifyContent="center"
                   style={{ minHeight: "100vh", marginTop: "1rem" }}
                 >
-                  <Grid item xs={12}>
+                  <Grid item xs={10}>
                     <Pagination
                       count={parseInt(pokemonList.count / itemsPerPage) - 15}
                       size="large"

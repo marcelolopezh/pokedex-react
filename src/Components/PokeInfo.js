@@ -8,6 +8,27 @@ import { styled } from "@mui/material/styles";
 import "../index.css";
 import AutorenewIcon from "@mui/icons-material/Autorenew";
 import LoopIcon from "@mui/icons-material/Loop";
+
+import {
+  Chart as ChartJS,
+  RadialLinearScale,
+  PointElement,
+  LineElement,
+  Filler,
+  Tooltip,
+  Legend,
+} from "chart.js";
+import { Radar } from "react-chartjs-2";
+
+ChartJS.register(
+  RadialLinearScale,
+  PointElement,
+  LineElement,
+  Filler,
+  Tooltip,
+  Legend
+);
+
 const BorderLinearProgress = styled(LinearProgress)(({ theme }) => ({
   height: 10,
   borderRadius: 5,
@@ -23,16 +44,29 @@ const BorderLinearProgress = styled(LinearProgress)(({ theme }) => ({
 
 const normalize = (pokemonData) => {
   let pokemonDataNormalize = pokemonData.stats;
-  let newArr = [];
-  let min = 1;
-  let max = 155;
+  let names = [];
+  let stats = [];
   pokemonDataNormalize.map((stat) => {
-    newArr.push({
-      name: stat.stat.name,
-      base_stat: ((stat.base_stat - min) * 100) / (max - min),
-    });
+    names.push(stat.stat.name);
+    stats.push(stat.base_stat);
+    console.log(names, stats);
   });
-  return newArr;
+  return { names, stats };
+};
+
+const data = (pokemonData) => {
+  return {
+    labels: normalize(pokemonData).names,
+    datasets: [
+      {
+        label: "# of Votes",
+        data: normalize(pokemonData).stats,
+        backgroundColor: "rgba(255, 99, 132, 0.2)",
+        borderColor: "rgba(255, 99, 132, 1)",
+        borderWidth: 1,
+      },
+    ],
+  };
 };
 
 export const PokeInfo = ({ pokemonData }) => {
@@ -82,24 +116,16 @@ export const PokeInfo = ({ pokemonData }) => {
             })
           : ""}
       </div>
-      <div className="divStat">
-        {pokemonData
-          ? normalize(pokemonData).map((stat) => {
-              return (
-                <Box sx={{ flexGrow: 1 }} key={stat.name}>
-                  <Typography variant="caption" display="block" align="left">
-                    {stat.name.toUpperCase()}
-                  </Typography>
-                  <BorderLinearProgress
-                    variant="determinate"
-                    value={stat.base_stat}
-                    className="VolumeBar"
-                  />
-                </Box>
-              );
-            })
-          : null}
-      </div>{" "}
+
+      <div>
+        {pokemonData ? (
+          <Radar
+            data={data(pokemonData)}
+          />
+        ) : (
+          ""
+        )}
+      </div>
     </>
   );
 };
