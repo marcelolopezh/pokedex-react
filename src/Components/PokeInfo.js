@@ -2,6 +2,8 @@ import React, { useState } from "react";
 import "../index.css";
 import AutorenewIcon from "@mui/icons-material/Autorenew";
 import LoopIcon from "@mui/icons-material/Loop";
+import Grid from "@mui/material/Grid";
+import Box from "@mui/material/Box";
 
 import {
   Chart as ChartJS,
@@ -54,51 +56,75 @@ export const PokeInfo = ({ pokemonData }) => {
   const [imgFront, setImgFront] = useState(true);
   return (
     <>
-      <div className="pokemon">
-        <h1 className={pokemonData ? pokemonData.types[0].type.name : null}>
-          {pokemonData ? pokemonData.name.toUpperCase() : null}
-        </h1>
-        <h4> {pokemonData ? "N° " + pokemonData.id : ""}</h4>
-      </div>
-      {pokemonData ? (
-        <>
-          {imgFront ? (
-            <AutorenewIcon onClick={() => setImgFront(!imgFront)} />
-          ) : (
-            <LoopIcon onClick={() => setImgFront(!imgFront)} />
-          )}
+      <Box sx={{ flexGrow: 1 }}>
+        <Grid container style={{ maxHeight: "100vh", marginTop: "5rem" }}>
+          <Grid md={5} xs={12}>
+            <div className="pokemon">
+              <h1
+                className={pokemonData ? pokemonData.types[0].type.name : null}
+              >
+                {pokemonData ? pokemonData.name.toUpperCase() : null}
+              </h1>
+              <h4> {pokemonData ? "N° " + pokemonData.id : ""}</h4>
+            </div>
+            {pokemonData ? (
+              <>
+                {imgFront ? (
+                  <AutorenewIcon onClick={() => setImgFront(!imgFront)} />
+                ) : (
+                  <LoopIcon onClick={() => setImgFront(!imgFront)} />
+                )}
 
-          <div className="pokemonImg">
-            {imgFront && pokemonData ? (
-              <img src={pokemonData.imgFront} alt="frontPokemon" />
-            ) : (
-              ""
-            )}
-            {!imgFront && pokemonData ? (
-              <img src={pokemonData.imgBack} alt="backPokemon" />
-            ) : (
-              ""
-            )}
-          </div>
-        </>
-      ) : (
-        <h2> No Encontrado! </h2>
-      )}
-      <div>
-        {pokemonData
-          ? pokemonData.types.map((type) => {
-              return (
-                <div className={type.type.name} key={type.slot}>
-                  <small className="typePokemon">
-                    {type.type.name.toUpperCase()}
-                  </small>
+                <div className="pokemonImg">
+                  {imgFront && pokemonData ? (
+                    <img src={pokemonData.imgFront} alt="frontPokemon" />
+                  ) : (
+                    ""
+                  )}
+                  {!imgFront && pokemonData ? (
+                    <img src={pokemonData.imgBack} alt="backPokemon" />
+                  ) : (
+                    ""
+                  )}
                 </div>
-              );
-            })
-          : ""}
-      </div>
-
-      <div>{pokemonData ? <Radar data={data(pokemonData)} /> : ""}</div>
+              </>
+            ) : (
+              <h2> No Encontrado! </h2>
+            )}
+            <div>
+              {pokemonData
+                ? pokemonData.types.map((type) => {
+                    return (
+                      <div className={type.type.name} key={type.slot}>
+                        <small className="typePokemon">
+                          {type.type.name.toUpperCase()}
+                        </small>
+                      </div>
+                    );
+                  })
+                : ""}
+            </div>
+          </Grid>
+          <Grid
+            md={7}
+            xs={12}
+            direction="column"
+            alignItems="center"
+            justifyContent="center"
+          >
+            {pokemonData ? (
+              <div>
+                <Radar
+                  style={{ paddingBottom: "1.1rem" }}
+                  data={data(pokemonData)}
+                />
+              </div>
+            ) : (
+              ""
+            )}
+          </Grid>
+        </Grid>
+      </Box>
     </>
   );
 };

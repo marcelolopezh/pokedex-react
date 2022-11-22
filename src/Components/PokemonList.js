@@ -62,7 +62,7 @@ export const PokemonList = () => {
                   direction="column"
                   alignItems="center"
                   justifyContent="center"
-                  style={{ minHeight: "100vh", marginTop: "1rem" }}
+                  style={{ maxHeight: "100vh", marginTop: "1rem" }}
                 >
                   <Grid item xs={10}>
                     <Pagination

@@ -14,7 +14,7 @@ export const PokedexApp = () => {
     <>
       <Box sx={{ flexGrow: 1 }}>
         <Grid container spacing={3} className="mainContainer">
-          <Grid item xs={12} md={5}>
+          <Grid item xs={12} md={7}>
             <Card>
               <CardContent>
                 <Buscador setPokemon={setPokemon} />
@@ -23,7 +23,7 @@ export const PokedexApp = () => {
             </Card>{" "}
           </Grid>
 
-          <Grid item xs={12} md={7}>
+          <Grid item xs={12} md={5}>
             <Card>
               <CardContent>
                 <PokemonList />
