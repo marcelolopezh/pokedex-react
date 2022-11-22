@@ -4,19 +4,33 @@ import Box from "@mui/material/Box";
 import Grid from "@mui/material/Grid";
 import { PokemonCard } from "./PokemonCard";
 
+import Pagination from "@mui/material/Pagination";
+
 export const PokemonList = () => {
   const [loading, setLoading] = useState(true);
   const [pokemonList, setPokemonList] = useState();
+  const [page, setPage] = useState(1);
+
+  const itemsPerPage = 9;
+
+  const [offset, setOffset] = useState(parseInt(0));
+
   useEffect(() => {
     async function getData() {
-      const url = "https://pokeapi.co/api/v2/pokemon/";
+      let url = `https://pokeapi.co/api/v2/pokemon/?offset=${offset}&limit=${itemsPerPage}`;
+      console.log(url);
       await axios.get(url).then((response) => {
-        setPokemonList(response.data.results);
+        setPokemonList(response.data);
       });
     }
     getData();
     setLoading(false);
-  }, []);
+  }, [offset]);
+
+  const handleChangePage = (e, p) => {
+    setPage(p);
+    setOffset(parseInt(itemsPerPage * p));
+  };
 
   return (
     <>
@@ -34,12 +48,29 @@ export const PokemonList = () => {
           {!loading ? (
             <>
               {pokemonList
-                ? pokemonList.map((pokemon) => (
+                ? pokemonList.results.map((pokemon) => (
                     <Grid item xs={6} md={4} key={pokemon.name}>
                       <PokemonCard pokemon={pokemon} />
                     </Grid>
                   ))
                 : ""}
+
+              {pokemonList ? (
+                <Grid>
+                  <Grid item xs={12}>
+                    <Pagination
+                      count={parseInt(pokemonList.count / itemsPerPage) - 15}
+                      size="large"
+                      page={page}
+                      variant="outlined"
+                      shape="rounded"
+                      onChange={handleChangePage}
+                    />
+                  </Grid>
+                </Grid>
+              ) : (
+                ""
+              )}
             </>
           ) : (
             <></>
