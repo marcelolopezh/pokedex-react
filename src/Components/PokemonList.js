@@ -44,12 +44,12 @@ export const PokemonList = () => {
         }}
         className="boxScroll"
       >
-        <Grid container spacing={2}>
+        <Grid container spacing={1}>
           {!loading ? (
             <>
               {pokemonList
                 ? pokemonList.results.map((pokemon) => (
-                    <Grid item xs={5} offset={1} md={4} key={pokemon.name}>
+                    <Grid item xs={6} md={4} key={pokemon.name}>
                       <PokemonCard pokemon={pokemon} />
                     </Grid>
                   ))

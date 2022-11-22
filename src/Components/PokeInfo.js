@@ -1,10 +1,4 @@
 import React, { useState } from "react";
-import LinearProgress, {
-  linearProgressClasses,
-} from "@mui/material/LinearProgress";
-import Typography from "@mui/material/Typography";
-import Box from "@mui/material/Box";
-import { styled } from "@mui/material/styles";
 import "../index.css";
 import AutorenewIcon from "@mui/icons-material/Autorenew";
 import LoopIcon from "@mui/icons-material/Loop";
@@ -29,27 +23,14 @@ ChartJS.register(
   Legend
 );
 
-const BorderLinearProgress = styled(LinearProgress)(({ theme }) => ({
-  height: 10,
-  borderRadius: 5,
-  [`&.${linearProgressClasses.colorPrimary}`]: {
-    backgroundColor:
-      theme.palette.grey[theme.palette.mode === "light" ? 200 : 800],
-  },
-  [`& .${linearProgressClasses.bar}`]: {
-    borderRadius: 2,
-    backgroundColor: theme.palette.mode === "light" ? "#1a90ff" : "#308fe8",
-  },
-}));
-
 const normalize = (pokemonData) => {
   let pokemonDataNormalize = pokemonData.stats;
   let names = [];
   let stats = [];
+  // eslint-disable-next-line array-callback-return
   pokemonDataNormalize.map((stat) => {
     names.push(stat.stat.name);
     stats.push(stat.base_stat);
-    console.log(names, stats);
   });
   return { names, stats };
 };
@@ -59,10 +40,10 @@ const data = (pokemonData) => {
     labels: normalize(pokemonData).names,
     datasets: [
       {
-        label: "# of Votes",
+        label: "Stats",
         data: normalize(pokemonData).stats,
-        backgroundColor: "rgba(255, 99, 132, 0.2)",
-        borderColor: "rgba(255, 99, 132, 1)",
+        backgroundColor: "rgba(16, 14, 238, 0.4)",
+        borderColor: "rgba(16, 14, 238, 1)",
         borderWidth: 1,
       },
     ],
@@ -117,15 +98,7 @@ export const PokeInfo = ({ pokemonData }) => {
           : ""}
       </div>
 
-      <div>
-        {pokemonData ? (
-          <Radar
-            data={data(pokemonData)}
-          />
-        ) : (
-          ""
-        )}
-      </div>
+      <div>{pokemonData ? <Radar data={data(pokemonData)} /> : ""}</div>
     </>
   );
 };
