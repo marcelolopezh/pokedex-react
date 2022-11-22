@@ -42,12 +42,19 @@ const data = (pokemonData) => {
     labels: normalize(pokemonData).names,
     datasets: [
       {
+        spanGaps: true,
         label: "Stats",
         data: normalize(pokemonData).stats,
         backgroundColor: "rgba(16, 14, 238, 0.4)",
         borderColor: "rgba(16, 14, 238, 1)",
         borderWidth: 1,
       },
+      {
+        data : [160,160,160,160,160,160],
+        label: "",
+        backgroundColor: "rgba(16, 14, 238, 0)",
+        borderWidth: 1,
+      }
     ],
   };
 };
