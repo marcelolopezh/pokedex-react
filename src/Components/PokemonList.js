@@ -56,7 +56,14 @@ export const PokemonList = () => {
                 : ""}
 
               {pokemonList ? (
-                <Grid>
+                <Grid
+                  container
+                  spacing={0}
+                  direction="column"
+                  alignItems="center"
+                  justifyContent="center"
+                  style={{ minHeight: "100vh", marginTop: "1rem" }}
+                >
                   <Grid item xs={12}>
                     <Pagination
                       count={parseInt(pokemonList.count / itemsPerPage) - 15}
