@@ -4,7 +4,7 @@ import AutorenewIcon from "@mui/icons-material/Autorenew";
 import LoopIcon from "@mui/icons-material/Loop";
 import Grid from "@mui/material/Grid";
 import Box from "@mui/material/Box";
-
+import { getColor } from "../helpers/getColor";
 import {
   Chart as ChartJS,
   RadialLinearScale,
@@ -45,16 +45,10 @@ const data = (pokemonData) => {
         spanGaps: true,
         label: "Stats",
         data: normalize(pokemonData).stats,
-        backgroundColor: "rgba(16, 14, 238, 0.4)",
-        borderColor: "rgba(16, 14, 238, 1)",
+        backgroundColor: getColor(pokemonData.types[0].type.name)[0],
+        borderColor: getColor(pokemonData.types[0].type.name)[1],
         borderWidth: 1,
       },
-      {
-        data : [160,160,160,160,160,160],
-        label: "",
-        backgroundColor: "rgba(16, 14, 238, 0)",
-        borderWidth: 1,
-      }
     ],
   };
 };
@@ -112,15 +106,20 @@ export const PokeInfo = ({ pokemonData }) => {
                 : ""}
             </div>
           </Grid>
-          <Grid
-            md={7}
-            xs={12}
-            alignItems="center"
-            justifyContent="center"
-          >
+          <Grid md={7} xs={12} alignItems="center" justifyContent="center">
             {pokemonData ? (
               <div>
                 <Radar
+                  options={{
+                    options: {
+                      legend: {
+                        display: false,
+                      },
+                      tooltips: {
+                        enabled: false,
+                      },
+                    },
+                  }}
                   style={{ paddingBottom: "1.1rem" }}
                   data={data(pokemonData)}
                 />

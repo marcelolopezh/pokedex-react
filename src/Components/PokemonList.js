@@ -75,7 +75,7 @@ export const PokemonList = ({ setPokemon }) => {
                 >
                   <Grid item xs={10}>
                     <Pagination
-                      count={parseInt(pokemonList.count / itemsPerPage) - 15}
+                      count={parseInt(pokemonList.count / itemsPerPage) - 50}
                       size="small"
                       page={page}
                       color="primary"

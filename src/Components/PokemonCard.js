@@ -39,7 +39,7 @@ export const PokemonCard = (pokemon) => {
         )
       ) : (
         // eslint-disable-next-line jsx-a11y/alt-text
-        <img src={pokeGif} width="50%" />
+        <img src={pokeGif} width="50%" alt="loading"/>
       )}{" "}
     </div>
   );
