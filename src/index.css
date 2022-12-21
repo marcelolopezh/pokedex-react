@@ -146,6 +146,24 @@ body {
     margin: 0.1rem;
 }
 
+.ground {
+    margin-top: 1rem;
+    display: inline-block;
+    background-color: rgba(132, 97, 9, 0.936);
+    padding-left: 0.4rem;
+    padding-right: 0.4rem;
+    margin: 0.1rem;
+}
+
+.steel {
+    margin-top: 1rem;
+    display: inline-block;
+    background-color: rgba(160, 160, 160, 0.936);
+    padding-left: 0.4rem;
+    padding-right: 0.4rem;
+    margin: 0.1rem;
+}
+
 .fairy {
     margin-top: 1rem;
     display: inline-block;
