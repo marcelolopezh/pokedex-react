@@ -164,6 +164,15 @@ body {
     margin: 0.1rem;
 }
 
+.dragon {
+    margin-top: 1rem;
+    display: inline-block;
+    background-color: rgba(119, 0, 245, 0.936);
+    padding-left: 0.4rem;
+    padding-right: 0.4rem;
+    margin: 0.1rem;
+}
+
 .fairy {
     margin-top: 1rem;
     display: inline-block;
